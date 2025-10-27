@@ -1,0 +1,75 @@
+Ran 1 test for test/MemeFactory.t.sol:MemeFactoryTest
+[FAIL: EvmError: Revert] testCreateMemeAndMint() (gas: 278297)
+Logs:
+  ✅ MemeFactory deployed: 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  ✅ MemeToken implementation: 0x0000000000000000000000000000000000000999
+  👤 User: 0x0000000000000000000000000000000000000123
+  📦 New MemeToken: 0x104fBc016F4bb334D775a19E8A6510109AC63E00
+  💰 Price per mint: 10000000000000000
+  🪙 Tokens per mint: 10000000000000000000
+
+Traces:
+  [1699428] MemeFactoryTest::setUp()
+    ├─ [0] VM::deal(0x0000000000000000000000000000000000000123, 100000000000000000000 [1e20])
+    │   └─ ← [Return]
+    ├─ [1643578] → new MemeFactory@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   └─ ← [Return] 8083 bytes of code
+    ├─ [0] console::log("✅ MemeFactory deployed:", MemeFactory: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [483] MemeFactory::memeTokenImplementation() [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000999
+    ├─ [0] console::log("✅ MemeToken implementation:", 0x0000000000000000000000000000000000000999) [staticcall]
+    │   └─ ← [Stop]
+    └─ ← [Stop]
+
+  [278297] MemeFactoryTest::testCreateMemeAndMint()
+    ├─ [0] VM::deal(0x0000000000000000000000000000000000000123, 100000000000000000000 [1e20])
+    │   └─ ← [Return]
+    ├─ [0] VM::startPrank(0x0000000000000000000000000000000000000123)
+    │   └─ ← [Return]
+    ├─ [0] console::log("👤 User:", 0x0000000000000000000000000000000000000123) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [210178] MemeFactory::createMeme("Test Meme", "TME", 1000000000000000000000000 [1e24], 10000000000000000000 [1e19], 10000000000000000 [1
+e16])                                                                                                                                              │   ├─ [9031] → new <unknown>@0x104fBc016F4bb334D775a19E8A6510109AC63E00
+    │   │   └─ ← [Return] 45 bytes of code
+    │   ├─ [2717] 0x104fBc016F4bb334D775a19E8A6510109AC63E00::initialize("Test Meme", "TME", 1000000000000000000000000 [1e24], 0x00000000000000
+00000000000000000000000123, MemeFactory: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f])                                                             │   │   ├─ [0] 0x0000000000000000000000000000000000000999::initialize("Test Meme", "TME", 1000000000000000000000000 [1e24], 0x0000000000000
+000000000000000000000000123, MemeFactory: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]) [delegatecall]                                             │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return]
+    │   ├─ emit MemeCreated(creator: 0x0000000000000000000000000000000000000123, token: 0x104fBc016F4bb334D775a19E8A6510109AC63E00, totalSupply
+: 1000000000000000000000000 [1e24], price: 10000000000000000 [1e16])                                                                               │   └─ ← [Return] 0x104fBc016F4bb334D775a19E8A6510109AC63E00
+    ├─ [2758] MemeFactory::getMemeInfo(0x104fBc016F4bb334D775a19E8A6510109AC63E00) [staticcall]
+    │   └─ ← [Return] MemeInfo({ tokenAddress: 0x104fBc016F4bb334D775a19E8A6510109AC63E00, creator: 0x0000000000000000000000000000000000000123,
+ totalSupply: 1000000000000000000000000 [1e24], mintedSupply: 0, perMint: 10000000000000000000 [1e19], price: 10000000000000000 [1e16], liquidityAdded: false })                                                                                                                                  ├─ [0] console::log("📦 New MemeToken:", 0x104fBc016F4bb334D775a19E8A6510109AC63E00) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("💰 Price per mint:", 10000000000000000 [1e16]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [0] console::log("🪙 Tokens per mint:", 10000000000000000000 [1e19]) [staticcall]
+    │   └─ ← [Stop]
+    ├─ [33314] MemeFactory::mintMeme{value: 10000000000000000}(0x104fBc016F4bb334D775a19E8A6510109AC63E00)
+    │   ├─ [0] 0x0000000000000000000000000000000000000123::fallback{value: 9500000000000000}()
+    │   │   └─ ← [Stop]
+    │   ├─ [175] 0x104fBc016F4bb334D775a19E8A6510109AC63E00::mint(MemeFactory: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 50000000000000000 
+[5e16])                                                                                                                                            │   │   ├─ [0] 0x0000000000000000000000000000000000000999::mint(MemeFactory: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 5000000000000000
+0 [5e16]) [delegatecall]                                                                                                                           │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return]
+    │   ├─ [175] 0x104fBc016F4bb334D775a19E8A6510109AC63E00::approve(0x0000000000000000000000000000000000000000, 50000000000000000 [5e16])     
+    │   │   ├─ [0] 0x0000000000000000000000000000000000000999::approve(0x0000000000000000000000000000000000000000, 50000000000000000 [5e16]) [d
+elegatecall]                                                                                                                                       │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return]
+    │   └─ ← [Revert] EvmError: Revert
+    └─ ← [Revert] EvmError: Revert
+
+Backtrace:
+  at MemeFactory.mintMeme
+  at MemeFactoryTest.testCreateMemeAndMint (test/MemeFactory.t.sol:51:61)
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 1.05ms (426.60µs CPU time)
+
+Ran 1 test suite in 28.69ms (1.05ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/MemeFactory.t.sol:MemeFactoryTest
+[FAIL: EvmError: Revert] testCreateMemeAndMint() (gas: 278297)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
